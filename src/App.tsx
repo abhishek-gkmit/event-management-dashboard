@@ -22,7 +22,7 @@ const router = createBrowserRouter([
             element: <AddEvent />,
           },
           {
-            path: "/event/edit",
+            path: "/event/edit/:id",
             element: <EditEvent />,
           },
         ],
