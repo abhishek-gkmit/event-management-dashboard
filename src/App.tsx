@@ -1,7 +1,13 @@
-import "@styles/App.css";
+import { createBrowserRouter } from "react-router-dom";
+import { AddEvent } from "./components/AddEvent/AddEvent";
+import "@/App.css";
 
 function App() {
-  return <h1>Event Management Dashboard</h1>;
+  return (
+    <div id="app">
+      <AddEvent />
+    </div>
+  );
 }
 
 export default App;
