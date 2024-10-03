@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { cloneObject } from "../utils";
 
 export function useEvents() {
-  const [events, setEvents] = useState<Array<MEvent>>([]);
+  const [events, setEvents] = useState<Array<MainEvent>>([]);
 
   useEffect(() => {
     const savedEvents = localStorage.getItem("events");
@@ -13,19 +13,19 @@ export function useEvents() {
 
   return { events, addEvent, updateEvent, deleteEvent };
 
-  function addEvent(eventData: MEvent) {
+  function addEvent(eventData: MainEvent) {
     const newEvent = {
       ...eventData,
       id: Date.now(),
     };
-    const newEvents = cloneObject(events) as Array<MEvent>;
+    const newEvents = cloneObject(events) as Array<MainEvent>;
     newEvents.push(newEvent);
 
     setEvents(newEvents);
     localStorage.setItem("events", JSON.stringify(newEvents));
   }
 
-  function updateEvent(eventData: MEvent) { }
+  function updateEvent(eventData: MainEvent) { }
 
-  function deleteEvent(eventData: MEvent) { }
+  function deleteEvent(eventData: MainEvent) { }
 }

@@ -1,4 +1,4 @@
-interface MEvent extends AddEventFormData {
+interface MainEvent extends AddEventFormData {
   id?: number;
   attendeeList?: Array<Attendee>;
 }
