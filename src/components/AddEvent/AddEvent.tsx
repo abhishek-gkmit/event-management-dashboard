@@ -1,4 +1,4 @@
-import { FormHelper } from "../FormHelper/FormHelper";
+import { EventFormHelper } from "../EventFormHelper/EventFormHelper";
 
 import "@/components/AddEvent/AddEvent.css";
 
@@ -11,5 +11,5 @@ const initFormData: AddEventFormData = {
 };
 
 export function AddEvent() {
-  return <FormHelper initFormData={initFormData} isEdit={false} />;
+  return <EventFormHelper initFormData={initFormData} isEdit={false} />;
 }

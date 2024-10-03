@@ -6,7 +6,7 @@ interface EventFormData {
   location: string;
 }
 
-interface FormHelperPropTypes {
+interface EventFormHelperPropTypes {
   initFormData: EventFormData;
   isEdit: boolean;
 }

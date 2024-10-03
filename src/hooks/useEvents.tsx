@@ -17,6 +17,7 @@ export function useEvents() {
     const newEvent = {
       ...eventData,
       id: Date.now(),
+      attendeeList: [],
     };
 
     const newEvents = cloneObject(events) as Array<MainEvent>;

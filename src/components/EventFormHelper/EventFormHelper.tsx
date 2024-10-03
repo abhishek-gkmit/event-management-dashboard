@@ -4,7 +4,10 @@ import { useEvents } from "../../hooks/useEvents";
 import "@/components/FormHelper/FormHelper.css";
 import { useNavigate } from "react-router-dom";
 
-export function FormHelper({ initFormData, isEdit }: FormHelperPropTypes) {
+export function EventFormHelper({
+  initFormData,
+  isEdit,
+}: EventFormHelperPropTypes) {
   const [formData, setFormData] = useState(initFormData);
   const { addEvent, updateEvent } = useEvents();
 

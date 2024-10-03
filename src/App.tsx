@@ -4,6 +4,7 @@ import { EditEvent } from "./components/EditEvent/EditEvent";
 import "@/App.css";
 import { Dashboard } from "./components/Dashboard";
 import { Layout } from "./components/Layout";
+import { ManageAttendees } from "./components/ManageAttendees/ManageAttendees";
 
 const router = createBrowserRouter([
   {
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
             element: <EditEvent />,
           },
         ],
+      },
+      {
+        path: "/attendees/:eventId",
+        element: <ManageAttendees />,
       },
     ],
   },
