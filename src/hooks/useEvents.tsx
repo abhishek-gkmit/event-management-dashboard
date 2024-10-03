@@ -18,6 +18,7 @@ export function useEvents() {
       ...eventData,
       id: Date.now(),
     };
+
     const newEvents = cloneObject(events) as Array<MainEvent>;
     newEvents.push(newEvent);
 
@@ -25,7 +26,21 @@ export function useEvents() {
     localStorage.setItem("events", JSON.stringify(newEvents));
   }
 
-  function updateEvent(eventData: MainEvent) { }
+  function updateEvent(eventData: MainEvent) {
+    const newEvents = (cloneObject(events) as Array<MainEvent>).map((event) =>
+      event.id === eventData.id ? eventData : event,
+    );
 
-  function deleteEvent(eventData: MainEvent) { }
+    setEvents(newEvents);
+    localStorage.setItem("events", JSON.stringify(newEvents));
+  }
+
+  function deleteEvent(eventData: MainEvent) {
+    const newEvents = (cloneObject(events) as Array<MainEvent>).filter(
+      ({ id }) => id !== eventData.id,
+    );
+
+    setEvents(newEvents);
+    localStorage.setItem("events", JSON.stringify(newEvents));
+  }
 }
