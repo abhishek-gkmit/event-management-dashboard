@@ -2,7 +2,7 @@ import { EventFormHelper } from "../EventFormHelper/EventFormHelper";
 
 import "@/components/AddEvent/AddEvent.css";
 
-const initFormData: AddEventFormData = {
+const initFormData: EventFormData = {
   title: "",
   datetime: "",
   description: "",
