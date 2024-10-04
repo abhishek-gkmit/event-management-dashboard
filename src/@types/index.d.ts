@@ -3,7 +3,7 @@ interface Attendee {
   email: string;
 }
 
-interface MainEvent extends AddEventFormData {
+interface MainEvent extends EventFormData {
   id?: number;
   attendeeList?: Array<Attendee>;
 }
