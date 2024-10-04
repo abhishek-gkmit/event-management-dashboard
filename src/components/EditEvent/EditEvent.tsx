@@ -1,8 +1,7 @@
-import { useEvents } from "../../hooks/useEvents";
+import { useEvents } from "@hooks/useEvents";
 
-import "@/components/AddEvent/AddEvent.css";
 import { useParams } from "react-router-dom";
-import { EventFormHelper } from "../EventFormHelper/EventFormHelper";
+import { EventFormHelper } from "@components/EventFormHelper/EventFormHelper";
 
 export function EditEvent() {
   const { id } = useParams();

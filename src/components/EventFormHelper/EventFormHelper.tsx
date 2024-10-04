@@ -1,7 +1,7 @@
 import { FormEvent, useState } from "react";
-import { useEvents } from "../../hooks/useEvents";
+import { useEvents } from "@hooks/useEvents";
 
-import "@/components/EventFormHelper/EventFormHelper.css";
+import "@components/EventFormHelper/EventFormHelper.css";
 import { useNavigate } from "react-router-dom";
 
 export function EventFormHelper({
@@ -76,7 +76,7 @@ export function EventFormHelper({
     </>
   );
 
-  function handleOnChange(data: Partial<AddEventFormData>) {
+  function handleOnChange(data: Partial<EventFormData>) {
     setFormData((formData) => ({ ...formData, ...data }));
   }
 

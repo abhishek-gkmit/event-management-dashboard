@@ -1,10 +1,10 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { AddEvent } from "./components/AddEvent/AddEvent";
-import { EditEvent } from "./components/EditEvent/EditEvent";
-import "@/App.css";
-import { Dashboard } from "./components/Dashboard";
-import { Layout } from "./components/Layout";
-import { ManageAttendees } from "./components/ManageAttendees/ManageAttendees";
+import { AddEvent } from "@components/AddEvent/AddEvent";
+import { EditEvent } from "@components/EditEvent/EditEvent";
+import { Dashboard } from "@components/Dashboard";
+import { Layout } from "@components/Layout";
+
+import "@src/App.css";
 
 const router = createBrowserRouter([
   {
@@ -27,10 +27,6 @@ const router = createBrowserRouter([
             element: <EditEvent />,
           },
         ],
-      },
-      {
-        path: "/attendees/:eventId",
-        element: <ManageAttendees />,
       },
     ],
   },
