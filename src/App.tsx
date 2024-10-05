@@ -1,7 +1,6 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { AddEvent } from "@components/AddEvent";
 import { EditEvent } from "@components/EditEvent";
-import { Dashboard } from "@components/Dashboard";
 import { Layout } from "@components/Layout";
 import { AddAttendee } from "@components/AddAttendee";
 import { EditAttendee } from "@components/EditAttendee";
@@ -13,10 +12,6 @@ const router = createBrowserRouter([
     path: "/",
     element: <Layout />,
     children: [
-      {
-        path: "/dashboard",
-        element: <Dashboard />,
-      },
       {
         path: "/event",
         children: [
