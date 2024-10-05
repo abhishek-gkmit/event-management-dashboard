@@ -1,8 +1,8 @@
 import { useNavigate } from "react-router-dom";
-import { useEvents } from "@hooks/useEvents";
 import { useMemo } from "react";
+import { useEvents } from "@hooks/useEvents";
 
-import "@components/AttendeeList/AttendeeList.css";
+import "@components/AttendeeList/style.css";
 
 function Attendee({ id, name, email, event, deleteAttendee }: AttendeeProps) {
   const navigate = useNavigate();
@@ -33,15 +33,15 @@ export function AttendeeList({ eventId }: AttendeeListProps) {
 
   const navigate = useNavigate();
 
-  if (!eventId) {
-    navigate("/error/eventId-not-found");
-    return;
-  }
-
   const event = useMemo(
     () => events.find(({ id }) => id === +eventId),
-    [events],
+    [events, eventId],
   );
+
+  if (!event) {
+    navigate(`/error/event-with-${eventId}-not-found`);
+    return;
+  }
 
   return (
     <div className="attendee-list">
