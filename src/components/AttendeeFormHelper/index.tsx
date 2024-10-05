@@ -18,7 +18,7 @@ export function AttendeeFormHelper({
 
   const event = useMemo(
     () => events.find(({ id }) => id === eventId),
-    [events],
+    [events, eventId],
   );
 
   useEffect(() => {
