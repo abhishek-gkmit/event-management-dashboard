@@ -1,10 +1,10 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { AddEvent } from "@components/AddEvent/AddEvent";
-import { EditEvent } from "@components/EditEvent/EditEvent";
-import { Dashboard } from "@src/components/Dashboard/Dashboard";
+import { AddEvent } from "@components/AddEvent";
+import { EditEvent } from "@components/EditEvent";
+import { Dashboard } from "@components/Dashboard";
 import { Layout } from "@components/Layout";
-import { AddAttendee } from "@components/AddAttendee/AddAttendee";
-import { EditAttendee } from "@components/EditAttendee/EditAttendee";
+import { AddAttendee } from "@components/AddAttendee";
+import { EditAttendee } from "@components/EditAttendee";
 
 import "@src/App.css";
 

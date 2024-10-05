@@ -1,6 +1,6 @@
 import { useNavigate, useParams } from "react-router-dom";
-import { AttendeeFormHelper } from "@src/components/AttendeeFormHelper";
-import { useEvents } from "@src/hooks/useEvents";
+import { AttendeeFormHelper } from "@components/AttendeeFormHelper";
+import { useEvents } from "@hooks/useEvents";
 
 export function EditAttendee() {
   const navigate = useNavigate();
