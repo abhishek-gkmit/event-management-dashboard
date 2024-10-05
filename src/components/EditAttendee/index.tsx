@@ -5,7 +5,6 @@ import { useEvents } from "@hooks/useEvents";
 export function EditAttendee() {
   const navigate = useNavigate();
   const { eventId, attendeeId } = useParams();
-  console.log(`eventId: ${eventId}, attendeeId: ${attendeeId}`);
   const { events } = useEvents();
 
   if (!eventId || !attendeeId) {
