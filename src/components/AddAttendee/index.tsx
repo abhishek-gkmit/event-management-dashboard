@@ -14,6 +14,7 @@ export function AddAttendee() {
     <AttendeeFormHelper
       initFormData={{ name: "", email: "" }}
       isEdit={false}
+      /* +eventId will convert the eventId variable that is a string to number */
       eventId={+eventId}
     />
   );
