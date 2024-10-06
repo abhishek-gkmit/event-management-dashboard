@@ -42,7 +42,7 @@ export function EventList({ date }: EventListProps) {
         <tr>
           <td
             colSpan={5}
-          >{`There are not events for ${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()}`}</td>
+          >{`There are no events on ${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()}`}</td>
         </tr>
       );
     }
