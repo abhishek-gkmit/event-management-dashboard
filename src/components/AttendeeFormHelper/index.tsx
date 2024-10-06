@@ -65,12 +65,12 @@ export function AttendeeFormHelper({
         return attendee;
       });
       updateEvent(event);
-      navigate("/dashboard");
+      navigate(`/dashboard/select/${event.id}`);
     } else if (event) {
       const attendee = { ...formData, id: Date.now() };
       event.attendeeList?.push(attendee);
       updateEvent(event);
-      navigate("/dashboard");
+      navigate(`/dashboard/select/${event.id}`);
     } else {
       navigate("/error");
     }

@@ -4,6 +4,7 @@ import { useEvents } from "@hooks/useEvents";
 import { DashboardContext } from "@src/contexts/DashboardContext";
 
 import "@components/EventList/style.css";
+import { useEffect } from "react";
 
 function MainEventComponent({ id, title, datetime, attendees }: MainEvent) {
   const { eventId, selectEvent } = useContext(DashboardContext);
@@ -40,27 +41,23 @@ function filterEvents(events: MainEvent[], date: Date): MainEvent[] {
 
 export function EventList({ date }: EventListProps) {
   const { events } = useEvents();
+  const { eventId, selectEvent } = useContext(DashboardContext);
 
   const navigate = useNavigate();
 
-  const filteredEvents = useMemo(() => {
-    const eventsToRender = filterEvents(events, date);
-    if (eventsToRender.length < 1) {
+  const eventTable = useMemo(() => {
+    const filteredEvents = filterEvents(events, date);
+    if (filteredEvents.length < 1) {
       return (
-        <tr>
-          <td
-            colSpan={4}
-          >{`There are no events on ${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()}`}</td>
-        </tr>
+        <p>{`There are no events on ${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()}`}</p>
       );
     }
 
-    return eventsToRender.map((event) => <MainEventComponent {...event} />);
-  }, [events, date]);
+    const eventsToRender = filteredEvents.map((event) => (
+      <MainEventComponent {...event} />
+    ));
 
-  return (
-    <div className="event-list">
-      <h1>Event List</h1>
+    return (
       <table className="event-table">
         <thead>
           <tr>
@@ -70,8 +67,21 @@ export function EventList({ date }: EventListProps) {
             <th>Max attendees</th>
           </tr>
         </thead>
-        <tbody>{filteredEvents}</tbody>
+        <tbody>{eventsToRender}</tbody>
       </table>
+    );
+  }, [events, date]);
+
+  useEffect(() => {
+    console.log(events[0]?.id);
+    if (!eventId && selectEvent && events && events.length > 1) {
+      selectEvent(events[0]["id"]);
+    }
+  }, []);
+
+  return (
+    <div className="event-list">
+      {eventTable}
       <button
         type="button"
         className="event-add-btn"

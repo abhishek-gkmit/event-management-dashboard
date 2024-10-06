@@ -22,6 +22,10 @@ const router = createBrowserRouter([
         element: <Dashboard />,
       },
       {
+        path: "/dashboard/select/:id",
+        element: <Dashboard />,
+      },
+      {
         path: "/event",
         children: [
           {

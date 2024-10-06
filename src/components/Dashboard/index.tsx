@@ -2,6 +2,7 @@ import { useState } from "react";
 import Calendar from "react-calendar";
 import { EventList } from "@components/EventList";
 import { DashboardContextProvider } from "@src/contexts/DashboardContext";
+import { EventInfo } from "@components/EventInfo";
 
 import "@components/Dashboard/style.css";
 import "react-calendar/dist/Calendar.css";
@@ -24,7 +25,9 @@ export function Dashboard() {
           />
           <EventList date={date as Date} />
         </div>
-        <div className="right-side"></div>
+        <div className="right-side">
+          <EventInfo />
+        </div>
       </div>
     </DashboardContextProvider>
   );

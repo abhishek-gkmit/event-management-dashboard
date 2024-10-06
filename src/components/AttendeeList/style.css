@@ -1,5 +1,8 @@
+.attendee-list {}
+
 .attendee-table {
   border-collapse: collapse;
+  width: 100%;
 }
 
 .attendee-table thead tr th {
@@ -11,4 +14,8 @@
   text-align: center;
   padding: 5px;
   border: 1px solid rgba(0, 0, 0, 0.6);
+}
+
+.add-attendee-btn {
+  margin-top: 10px;
 }

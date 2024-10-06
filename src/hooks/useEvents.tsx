@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { cloneObject } from "../utils";
+import { cloneObject } from "@src/utils";
 
 export function useEvents() {
   const [events, setEvents] = useState<Array<MainEvent>>([]);

@@ -3,6 +3,7 @@ import { useMemo } from "react";
 import { useEvents } from "@hooks/useEvents";
 
 import "@components/AttendeeList/style.css";
+import { useCallback } from "react";
 
 function Attendee({ id, name, email, event, deleteAttendee }: AttendeeProps) {
   const navigate = useNavigate();
@@ -34,41 +35,64 @@ export function AttendeeList({ eventId }: AttendeeListProps) {
   const navigate = useNavigate();
 
   const event = useMemo(
-    () => events.find(({ id }) => id === +eventId),
+    () => events.find(({ id }) => id === eventId),
     [events, eventId],
   );
 
-  if (!event) {
-    navigate(`/error/event-with-${eventId}-not-found`);
-    return;
-  }
+  const attendeeTable = useMemo(() => {
+    if (event && event.attendeeList && event.attendeeList.length < 1) {
+      return (
+        <p>
+          There are no Attendees in the event. Add attendees via the button
+          below.
+        </p>
+      );
+    }
+    return (
+      <>
+        <p>Total Attendees: {event?.attendeeList?.length}</p>
+        <table className="attendee-table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Email</th>
+              <th></th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            {event &&
+              event.attendeeList?.map((attendee) => (
+                <Attendee
+                  {...attendee}
+                  event={event}
+                  deleteAttendee={deleteAttendee}
+                />
+              ))}
+          </tbody>
+        </table>
+      </>
+    );
+  }, [event]);
+
+  const addAttendee = useCallback(function addAttendeeBtnClickHandler() {
+    if (
+      event &&
+      event.attendeeList &&
+      event.attendeeList.length < event?.attendees
+    ) {
+      navigate(`/attendee/add/${event?.id}`);
+    } else {
+      alert(
+        "You have reached maximum attendee limit. If you want to add more attendees please edit the Event and increase the attendees limit.",
+      );
+    }
+  }, []);
 
   return (
     <div className="attendee-list">
-      <table className="attendee-table">
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Email</th>
-            <th></th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          {event &&
-            event.attendeeList?.map((attendee) => (
-              <Attendee
-                {...attendee}
-                event={event}
-                deleteAttendee={deleteAttendee}
-              />
-            ))}
-        </tbody>
-      </table>
-      <button
-        type="button"
-        onClick={() => navigate(`/attendee/add/${event.id}`)}
-      >
+      {attendeeTable}
+      <button className="add-attendee-btn" type="button" onClick={addAttendee}>
         Add Attendee
       </button>
     </div>
