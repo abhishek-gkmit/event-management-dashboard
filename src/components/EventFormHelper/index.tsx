@@ -84,9 +84,11 @@ export function EventFormHelper({
     e.preventDefault();
     if (isEdit) {
       updateEvent(formData);
+      navigate("/dashboard");
     } else {
       addEvent(formData);
       setFormData(initFormData);
+      navigate("/dashboard");
     }
   }
 }
