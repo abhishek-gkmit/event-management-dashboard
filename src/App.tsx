@@ -4,6 +4,7 @@ import { EditEvent } from "@components/EditEvent";
 import { Layout } from "@components/Layout";
 import { AddAttendee } from "@components/AddAttendee";
 import { EditAttendee } from "@components/EditAttendee";
+import { Dashboard } from "@components/Dashboard";
 
 import "@src/App.css";
 
@@ -12,6 +13,11 @@ const router = createBrowserRouter([
     path: "/",
     element: <Layout />,
     children: [
+      {
+        path: "/dashboard",
+        element: <Dashboard />,
+        index: true,
+      },
       {
         path: "/event",
         children: [
