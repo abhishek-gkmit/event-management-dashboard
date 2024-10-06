@@ -10,10 +10,6 @@ import "react-calendar/dist/Calendar.css";
 export function Dashboard() {
   const [date, setDate] = useState<Value>(new Date());
 
-  function onDateChange(date: Value) {
-    setDate(date);
-  }
-
   return (
     <DashboardContextProvider>
       <div className="dashboard">
@@ -21,7 +17,7 @@ export function Dashboard() {
           <Calendar
             className="calendar"
             value={date}
-            onChange={(date) => onDateChange(date as Date)}
+            onChange={(date) => setDate(date)}
           />
           <EventList date={date as Date} />
         </div>
