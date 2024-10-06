@@ -1,0 +1,3 @@
+interface EventListProps {
+  date: Date;
+}

@@ -2,6 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useEvents } from "@hooks/useEvents";
 
 import "@components/EventList/style.css";
+import { useMemo } from "react";
 
 function MainEventComponent({ id, title, datetime, attendees }: MainEvent) {
   return (
@@ -17,27 +18,52 @@ function MainEventComponent({ id, title, datetime, attendees }: MainEvent) {
   );
 }
 
-export function EventList() {
+function filterEvents(events: MainEvent[], date: Date): MainEvent[] {
+  const filteredEvents = events.filter(({ datetime }) => {
+    // + is used here to convert the date objects into number(miliseconds) to compare them
+    return (
+      +new Date(datetime.split("T")[0] + "T00:00") ===
+      +new Date(date.getFullYear(), date.getMonth(), date.getDate())
+    );
+  });
+
+  return filteredEvents;
+}
+
+export function EventList({ date }: EventListProps) {
   const { events } = useEvents();
 
   const navigate = useNavigate();
+
+  const filteredEvents = useMemo(() => {
+    const eventsToRendner = filterEvents(events, date);
+    if (eventsToRendner.length < 1) {
+      return (
+        <tr>
+          <td
+            colSpan={5}
+          >{`There are not events for ${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()}`}</td>
+        </tr>
+      );
+    }
+
+    return eventsToRendner.map((event) => <MainEventComponent {...event} />);
+  }, [events, date]);
 
   return (
     <div className="event-list">
       <h1>Event List</h1>
       <table className="event-table">
         <thead>
-          <th>Title</th>
-          <th>Date</th>
-          <th>Time</th>
-          <th>Max attendees</th>
-          <th></th>
+          <tr>
+            <th>Title</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Max attendees</th>
+            <th></th>
+          </tr>
         </thead>
-        <tbody>
-          {events.map((event) => (
-            <MainEventComponent {...event} />
-          ))}
-        </tbody>
+        <tbody>{filteredEvents}</tbody>
       </table>
       <button
         type="button"
