@@ -34,7 +34,7 @@ export function AttendeeFormHelper({
         required
         value={formData.name}
         minLength={5}
-        placeholder="Name"
+        placeholder="Name*"
         onChange={(e) => handleChange({ name: e.target.value })}
       />
       <input
@@ -42,7 +42,7 @@ export function AttendeeFormHelper({
         name="email"
         required
         value={formData.email}
-        placeholder="Email"
+        placeholder="Email*"
         onChange={(e) => handleChange({ email: e.target.value })}
       />
       <button type="submit">
