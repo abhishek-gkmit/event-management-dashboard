@@ -1,19 +1,27 @@
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useMemo, useContext } from "react";
 import { useEvents } from "@hooks/useEvents";
+import { DashboardContext } from "@src/contexts/DashboardContext";
 
 import "@components/EventList/style.css";
-import { useMemo } from "react";
 
 function MainEventComponent({ id, title, datetime, attendees }: MainEvent) {
+  const { eventId, selectEvent } = useContext(DashboardContext);
+
   return (
-    <tr key={id} className="event-table-row">
+    // `+` is used to convert string into number
+    <tr
+      key={id}
+      className={
+        "event-table-row" +
+        (eventId && +eventId === id ? " selected-event-row" : "")
+      }
+      onClick={() => selectEvent && selectEvent(id)}
+    >
       <td className="event-title">{title}</td>
       <td className="event-time">{datetime.split("T")[0]}</td>
       <td className="event-date">{datetime.split("T")[1]}</td>
       <td className="event-attendees">{attendees}</td>
-      <td className="event-edit-btn">
-        <Link to={`/event/edit/${id}`}> Edit</Link>
-      </td>
     </tr>
   );
 }
@@ -36,18 +44,18 @@ export function EventList({ date }: EventListProps) {
   const navigate = useNavigate();
 
   const filteredEvents = useMemo(() => {
-    const eventsToRendner = filterEvents(events, date);
-    if (eventsToRendner.length < 1) {
+    const eventsToRender = filterEvents(events, date);
+    if (eventsToRender.length < 1) {
       return (
         <tr>
           <td
-            colSpan={5}
+            colSpan={4}
           >{`There are no events on ${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()}`}</td>
         </tr>
       );
     }
 
-    return eventsToRendner.map((event) => <MainEventComponent {...event} />);
+    return eventsToRender.map((event) => <MainEventComponent {...event} />);
   }, [events, date]);
 
   return (
@@ -60,7 +68,6 @@ export function EventList({ date }: EventListProps) {
             <th>Date</th>
             <th>Time</th>
             <th>Max attendees</th>
-            <th></th>
           </tr>
         </thead>
         <tbody>{filteredEvents}</tbody>

@@ -19,3 +19,15 @@
 .event-add-btn {
   margin-top: 10px;
 }
+
+.event-table-row {
+  transition: 0.2s;
+}
+
+.event-table-row:hover {
+  background-color: rgba(0, 255, 0, 0.2);
+}
+
+.selected-event-row {
+  background-color: rgba(0, 255, 0, 0.2);
+}

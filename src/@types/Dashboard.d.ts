@@ -5,5 +5,5 @@ interface DashboardContextValues {
   date: string;
   eventId: string;
   setDate: (string) => void;
-  setEventId: (string) => void;
+  selectEvent: (string) => void;
 }
