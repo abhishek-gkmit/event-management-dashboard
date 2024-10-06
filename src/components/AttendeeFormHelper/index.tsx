@@ -27,6 +27,7 @@ export function AttendeeFormHelper({
 
   return (
     <form action="#" onSubmit={handleSubmit} className="attendee-form">
+      <h1>{isEdit ? "Update Attendee" : "Add Attendee"}</h1>
       <input
         ref={nameRef}
         type="text"
@@ -45,9 +46,18 @@ export function AttendeeFormHelper({
         placeholder="Email*"
         onChange={(e) => handleChange({ email: e.target.value })}
       />
-      <button type="submit">
-        {isEdit ? "Update Attendee" : "Add Attendee"}
-      </button>
+      <div className="container btn-container">
+        <button
+          className="button-15"
+          type="reset"
+          onClick={() => navigate(`/dashboard/select/${event?.id}`)}
+        >
+          Cancel
+        </button>
+        <button className="button-15" type="submit">
+          {isEdit ? "Update Attendee" : "Add Attendee"}
+        </button>
+      </div>
     </form>
   );
 

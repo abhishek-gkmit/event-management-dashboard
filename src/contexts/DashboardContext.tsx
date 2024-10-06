@@ -24,7 +24,6 @@ export function DashboardContextProvider({
 
   useEffect(() => {
     eventIdParam && setEventId(eventIdParam);
-    console.log(eventIdParam);
   }, []);
 
   return (

@@ -58,22 +58,23 @@ export function EventList({ date }: EventListProps) {
     ));
 
     return (
-      <table className="event-table">
-        <thead>
-          <tr>
-            <th>Title</th>
-            <th>Date</th>
-            <th>Time</th>
-            <th>Max attendees</th>
-          </tr>
-        </thead>
-        <tbody>{eventsToRender}</tbody>
-      </table>
+      <div className="table-container">
+        <table className="event-table">
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>Date</th>
+              <th>Time</th>
+              <th>Attendees</th>
+            </tr>
+          </thead>
+          <tbody>{eventsToRender}</tbody>
+        </table>
+      </div>
     );
   }, [events, date]);
 
   useEffect(() => {
-    console.log(events[0]?.id);
     if (!eventId && selectEvent && events && events.length > 1) {
       selectEvent(events[0]["id"]);
     }
@@ -84,7 +85,7 @@ export function EventList({ date }: EventListProps) {
       {eventTable}
       <button
         type="button"
-        className="event-add-btn"
+        className="event-add-btn button-15"
         onClick={() => navigate("/event/add")}
       >
         Add Event
