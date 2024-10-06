@@ -1,4 +1,4 @@
-import { EventFormHelper } from "@components/EventFormHelper/EventFormHelper";
+import { EventFormHelper } from "@components/EventFormHelper";
 
 const initFormData: EventFormData = {
   title: "",
