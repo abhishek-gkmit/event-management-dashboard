@@ -1,7 +1,7 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { AddEvent } from "@components/AddEvent/AddEvent";
 import { EditEvent } from "@components/EditEvent/EditEvent";
-import { Dashboard } from "@components/Dashboard";
+import { Dashboard } from "@components/Dashboard/Dashboard";
 import { Layout } from "@components/Layout";
 
 import "@src/App.css";
