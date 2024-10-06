@@ -8,7 +8,6 @@ export function cloneObject(object: AnyObject): AnyObject {
     for (const value of object) {
       copy.push(cloneObject(value));
     }
-    console.log("second return");
     return copy;
   }
 
@@ -17,7 +16,6 @@ export function cloneObject(object: AnyObject): AnyObject {
     for (const key of Object.keys(object)) {
       copy[key] = cloneObject(object[key]);
     }
-    console.log("third return");
     return copy;
   }
 

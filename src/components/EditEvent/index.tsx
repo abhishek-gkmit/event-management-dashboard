@@ -1,7 +1,6 @@
 import { useEvents } from "@hooks/useEvents";
-
 import { useParams } from "react-router-dom";
-import { EventFormHelper } from "@components/EventFormHelper/EventFormHelper";
+import { EventFormHelper } from "@components/EventFormHelper";
 
 export function EditEvent() {
   const { id } = useParams();
