@@ -1,6 +1,6 @@
-import { EventList } from "@components/EventList/EventList";
+import { EventList } from "@components/EventList";
 
-import "@components/Dashboard/Dashboard.css";
+import "@components/Dashboard/style.css";
 
 export function Dashboard() {
   return (

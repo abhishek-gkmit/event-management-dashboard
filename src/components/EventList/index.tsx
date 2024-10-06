@@ -1,7 +1,7 @@
+import { Link, useNavigate } from "react-router-dom";
 import { useEvents } from "@hooks/useEvents";
 
-import "@components/EventList/EventList.css";
-import { Link, useNavigate } from "react-router-dom";
+import "@components/EventList/style.css";
 
 function MainEventComponent({ id, title, datetime, attendees }: MainEvent) {
   return (
