@@ -1,6 +1,5 @@
 import { useMemo, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { useEvents } from "@src/hooks/useEvents";
 import { DashboardContext } from "@src/contexts/DashboardContext";
 import { AttendeeList } from "@components/AttendeeList";
 import { formatDate, formatTime } from "@src/utils";
@@ -8,8 +7,7 @@ import { formatDate, formatTime } from "@src/utils";
 import "@components/EventInfo/style.css";
 
 export function EventInfo() {
-  const { events, deleteEvent } = useEvents();
-  const { eventId } = useContext(DashboardContext);
+  const { eventId, events, deleteEvent } = useContext(DashboardContext);
 
   const navigate = useNavigate();
 
@@ -22,11 +20,6 @@ export function EventInfo() {
     return (
       <h2>{`Please select an event from event list to see it's information`}</h2>
     );
-  }
-
-  function deleteEventWrapper(event: MainEvent) {
-    deleteEvent(event);
-    navigate(0);
   }
 
   return (
@@ -66,7 +59,7 @@ export function EventInfo() {
         <button
           className="button-15"
           type="button"
-          onClick={() => deleteEventWrapper(event)}
+          onClick={() => deleteEvent(event)}
         >
           Delete Event
         </button>

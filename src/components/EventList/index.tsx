@@ -1,6 +1,5 @@
 import { useNavigate } from "react-router-dom";
 import { useMemo, useContext } from "react";
-import { useEvents } from "@hooks/useEvents";
 import { DashboardContext } from "@src/contexts/DashboardContext";
 import { formatDate, formatTime } from "@src/utils";
 
@@ -40,7 +39,7 @@ function filterEvents(events: MainEvent[], date: Date): MainEvent[] {
 }
 
 export function EventList({ date }: EventListProps) {
-  const { events } = useEvents();
+  const { events } = useContext(DashboardContext);
 
   const navigate = useNavigate();
 
