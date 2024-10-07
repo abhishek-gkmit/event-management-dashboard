@@ -24,6 +24,11 @@ export function EventInfo() {
     );
   }
 
+  function deleteEventWrapper(event: MainEvent) {
+    deleteEvent(event);
+    navigate(0);
+  }
+
   return (
     <div className="event-info">
       <h2 className="event-title">{event.title}</h2>
@@ -61,7 +66,7 @@ export function EventInfo() {
         <button
           className="button-15"
           type="button"
-          onClick={() => deleteEvent(event)}
+          onClick={() => deleteEventWrapper(event)}
         >
           Delete Event
         </button>

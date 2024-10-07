@@ -1,7 +1,20 @@
-import { useState, useEffect } from "react";
+import React from "react";
+import { useEffect } from "react";
+import { useState, createContext } from "react";
 import { cloneObject } from "@src/utils";
 
-export function useEvents() {
+export const EventsContext = createContext<EventsContextValues>({
+  events: [],
+  addEvent: () => { },
+  updateEvent: () => { },
+  deleteEvent: () => { },
+});
+
+export function EventsContextProvider({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   const [events, setEvents] = useState<Array<MainEvent>>([]);
 
   useEffect(() => {
@@ -10,8 +23,6 @@ export function useEvents() {
       setEvents(JSON.parse(savedEvents));
     }
   }, []);
-
-  return { events, addEvent, updateEvent, deleteEvent };
 
   function addEvent(eventData: MainEvent) {
     const newEvent = {
@@ -48,4 +59,12 @@ export function useEvents() {
     setEvents(newEvents);
     localStorage.setItem("events", JSON.stringify(newEvents));
   }
+
+  return (
+    <EventsContext.Provider
+      value={{ events, addEvent, updateEvent, deleteEvent }}
+    >
+      {children}
+    </EventsContext.Provider>
+  );
 }

@@ -7,3 +7,10 @@ interface DashboardContextValues {
   setDate: (string) => void;
   selectEvent: (string) => void;
 }
+
+interface EventsContextValues {
+  events: MainEvent[];
+  addEvent: (event: MainEvent) => void;
+  updateEvent: (event: MainEvent) => void;
+  deleteEvent: (event: MainEvent) => void;
+}
