@@ -21,3 +21,32 @@ export function cloneObject(object: AnyObject): AnyObject {
 
   return object;
 }
+
+export function formatTime(time: string) {
+  let newTime = "";
+  let [hours, minutes] = time.split(":");
+
+  if (hours === "12") {
+    newTime += hours;
+  } else if (hours === "0") {
+    newTime += "01";
+  } else {
+    newTime += ((+hours % 12) + "").padStart(2, "0");
+  }
+
+  newTime += ":";
+  newTime += minutes;
+
+  if (+hours >= 12) {
+    newTime += " PM";
+  } else {
+    newTime += " AM";
+  }
+
+  return newTime;
+}
+
+export function formatDate(date: string) {
+  let [year, month, day] = date.split("-");
+  return `${day}-${month}-${year}`;
+}

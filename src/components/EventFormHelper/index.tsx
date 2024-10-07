@@ -1,8 +1,9 @@
-import { FormEvent, useState } from "react";
+import { FormEvent, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { useEvents } from "@hooks/useEvents";
 
 import "@components/EventFormHelper/style.css";
+import { useEffect } from "react";
 
 export function EventFormHelper({
   initFormData,
@@ -10,8 +11,13 @@ export function EventFormHelper({
 }: EventFormHelperPropTypes) {
   const [formData, setFormData] = useState(initFormData);
   const { addEvent, updateEvent } = useEvents();
+  const titleRef = useRef<HTMLInputElement>(null);
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    titleRef.current?.focus();
+  }, []);
 
   return (
     <>
@@ -20,6 +26,7 @@ export function EventFormHelper({
         <input
           type="text"
           name="title"
+          ref={titleRef}
           placeholder="Title*"
           value={formData.title}
           minLength={5}

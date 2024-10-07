@@ -1,13 +1,17 @@
 import { useMemo, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import { useEvents } from "@src/hooks/useEvents";
 import { DashboardContext } from "@src/contexts/DashboardContext";
 import { AttendeeList } from "@components/AttendeeList";
+import { formatDate, formatTime } from "@src/utils";
 
 import "@components/EventInfo/style.css";
 
 export function EventInfo() {
-  const { events } = useEvents();
+  const { events, deleteEvent } = useEvents();
   const { eventId } = useContext(DashboardContext);
+
+  const navigate = useNavigate();
 
   const event = useMemo(
     () => events.find(({ id }) => eventId && +eventId === id) as MainEvent,
@@ -28,11 +32,11 @@ export function EventInfo() {
         <span className="datetime-emoji" title="Event date">
           🗓️
         </span>{" "}
-        {event.datetime.split("T")[0]},{" "}
+        {formatDate(event.datetime.split("T")[0])},{" "}
         <span className="datetime-emoji" title="Event time">
           🕒
         </span>{" "}
-        {event.datetime.split("T")[1]}
+        {formatTime(event.datetime.split("T")[1])}
       </p>
       <p className="event-location">
         <span className="datetime-emoji" title="Event location">
@@ -46,6 +50,22 @@ export function EventInfo() {
         </span>{" "}
         {event.attendees}
       </p>
+      <div className="btn-container">
+        <button
+          className="button-15"
+          type="button"
+          onClick={() => navigate(`/event/edit/${event.id}`)}
+        >
+          Edit Event
+        </button>
+        <button
+          className="button-15"
+          type="button"
+          onClick={() => deleteEvent(event)}
+        >
+          Delete Event
+        </button>
+      </div>
       <AttendeeList eventId={eventId ? +eventId : 0} />
     </div>
   );

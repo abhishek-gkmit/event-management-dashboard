@@ -2,9 +2,9 @@ import { useNavigate } from "react-router-dom";
 import { useMemo, useContext } from "react";
 import { useEvents } from "@hooks/useEvents";
 import { DashboardContext } from "@src/contexts/DashboardContext";
+import { formatDate, formatTime } from "@src/utils";
 
 import "@components/EventList/style.css";
-import { useEffect } from "react";
 
 function MainEventComponent({ id, title, datetime, attendees }: MainEvent) {
   const { eventId, selectEvent } = useContext(DashboardContext);
@@ -20,8 +20,8 @@ function MainEventComponent({ id, title, datetime, attendees }: MainEvent) {
       onClick={() => selectEvent && selectEvent(id)}
     >
       <td className="event-title">{title}</td>
-      <td className="event-time">{datetime.split("T")[0]}</td>
-      <td className="event-date">{datetime.split("T")[1]}</td>
+      <td className="event-date">{formatDate(datetime.split("T")[0])}</td>
+      <td className="event-time">{formatTime(datetime.split("T")[1])}</td>
       <td className="event-attendees">{attendees}</td>
     </tr>
   );
@@ -41,7 +41,6 @@ function filterEvents(events: MainEvent[], date: Date): MainEvent[] {
 
 export function EventList({ date }: EventListProps) {
   const { events } = useEvents();
-  const { eventId, selectEvent } = useContext(DashboardContext);
 
   const navigate = useNavigate();
 
@@ -52,6 +51,17 @@ export function EventList({ date }: EventListProps) {
         <p>{`There are no events on ${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()}`}</p>
       );
     }
+
+    filteredEvents.sort(function sortEvents(eventA, eventB) {
+      const dateA = new Date(eventA.datetime);
+      const dateB = new Date(eventB.datetime);
+      if (+dateA === +dateB) {
+        return 0;
+      } else if (dateA > dateB) {
+        return 1;
+      }
+      return -1;
+    });
 
     const eventsToRender = filteredEvents.map((event) => (
       <MainEventComponent {...event} />
@@ -73,12 +83,6 @@ export function EventList({ date }: EventListProps) {
       </div>
     );
   }, [events, date]);
-
-  useEffect(() => {
-    if (!eventId && selectEvent && events && events.length > 1) {
-      selectEvent(events[0]["id"]);
-    }
-  }, []);
 
   return (
     <div className="event-list">
