@@ -18,7 +18,11 @@ export function EventInfo() {
 
   if (!event) {
     return (
-      <h2>{`Please select an event from event list to see it's information`}</h2>
+      <div className="event-info">
+        <h2
+          style={{ textAlign: "center" }}
+        >{`Please select an event from event list to see it's information`}</h2>
+      </div>
     );
   }
 

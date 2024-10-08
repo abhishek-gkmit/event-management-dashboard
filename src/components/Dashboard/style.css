@@ -1,5 +1,6 @@
 .dashboard {
   display: flex;
+  gap: 50px;
   width: 100%;
   padding: 10px;
 }
@@ -10,8 +11,9 @@
   flex-direction: column;
   align-items: center;
   gap: 10px;
-  width: 40%;
-  max-height: 700px;
+  width: 50%;
+  height: 630px;
+  max-height: 630px;
 }
 
 .left-side {
@@ -19,10 +21,6 @@
   box-shadow: 2px 0px 5px 5px rgba(0, 0, 0, 0.2);
   border-radius: 20px;
   padding: 20px;
-}
-
-.right-side {
-  width: 60%;
 }
 
 .calendar {

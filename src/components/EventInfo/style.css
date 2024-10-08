@@ -1,7 +1,7 @@
 .event-info {
   display: flex;
   flex-direction: column;
-  width: 50%;
+  width: 100%;
   padding: 20px;
   border-radius: 20px;
   box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.2);
