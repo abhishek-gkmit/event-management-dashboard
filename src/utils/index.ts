@@ -123,3 +123,45 @@ export function filterEventsWithFilter(
       });
   }
 }
+
+export function sortEvents(events: MainEvent[], sortBy: string): MainEvent[] {
+  switch (sortBy) {
+    case "attendees":
+      events.sort(function sortEvents(
+        { attendees: attendeesA },
+        { attendees: attendeesB },
+      ) {
+        if (attendeesA === attendeesB) {
+          return 0;
+        } else if (attendeesA > attendeesB) {
+          return 1;
+        }
+        return -1;
+      });
+      break;
+
+    case "name":
+      events.sort(function sortEvents({ title: titleA }, { title: titleB }) {
+        if (titleA === titleB) {
+          return 0;
+        } else if (titleA > titleB) {
+          return 1;
+        }
+        return -1;
+      });
+      break;
+
+    default:
+      events.sort(function sortEvents(eventA, eventB) {
+        const dateA = new Date(eventA.datetime);
+        const dateB = new Date(eventB.datetime);
+        if (+dateA === +dateB) {
+          return 0;
+        } else if (dateA > dateB) {
+          return 1;
+        }
+        return -1;
+      });
+  }
+  return events;
+}

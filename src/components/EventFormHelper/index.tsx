@@ -22,7 +22,7 @@ export function EventFormHelper({
   return (
     <>
       <form action="#" onSubmit={handleSubmit} className="event-form">
-        <h3>{isEdit ? "Edit Event" : "Add Event"}</h3>
+        <h1>{isEdit ? "Edit Event" : "Add Event"}</h1>
         <input
           type="text"
           name="title"

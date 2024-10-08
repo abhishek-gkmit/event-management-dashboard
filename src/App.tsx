@@ -5,6 +5,7 @@ import { Layout } from "@components/Layout";
 import { AddAttendee } from "@components/AddAttendee";
 import { EditAttendee } from "@components/EditAttendee";
 import { Dashboard } from "@components/Dashboard";
+import { Settings } from "@components/Settings";
 
 import "@src/App.css";
 
@@ -50,6 +51,10 @@ const router = createBrowserRouter([
             element: <EditAttendee />,
           },
         ],
+      },
+      {
+        path: "/settings",
+        element: <Settings />,
       },
     ],
   },

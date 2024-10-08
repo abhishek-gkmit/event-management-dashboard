@@ -1,0 +1,61 @@
+.settings-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+  max-width: 400px;
+  margin: auto;
+  margin-top: 10px;
+  border-radius: 10px;
+  padding: 20px 30px;
+  transition: 200ms;
+  box-shadow: 0px 10px 50px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.settings-form>h1 {
+  width: 100%;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+}
+
+.settings-form-entry-container>p,
+.settings-form-entry-container {
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+  width: 100%;
+}
+
+.settings-form-entry-container {
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.1);
+}
+
+.settings-form-entry-container:hover {
+  box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.1);
+}
+
+.settings-form-entry {
+  padding: 5px;
+  cursor: pointer;
+}
+
+.container {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.container>button {
+  width: 100px;
+}
+
+button.reset-btn {
+  width: 70px;
+}
+
+.reset-btn:hover {
+  color: darkred;
+}

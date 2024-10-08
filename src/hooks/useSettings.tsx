@@ -1,13 +1,16 @@
 import { useCallback, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const INITIAL_SETTINGS: Settings = {
   timeFormat: "12",
   dateFormat: "dd-mm-yyyy",
   eventListFilter: "current-day",
+  sortBy: "date-time",
 };
 
 export function useSettings() {
   const [settings, setSettings] = useState<Settings>(INITIAL_SETTINGS);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const localSettings = localStorage.getItem("settings");
@@ -25,5 +28,23 @@ export function useSettings() {
     setSettings((settings) => ({ ...settings, ...newSettings }));
   }, []);
 
-  return { settings, updateSettings };
+  const saveSettings = useCallback(() => {
+    localStorage.setItem("settings", JSON.stringify(settings));
+    navigate("/");
+  }, [settings]);
+
+  const resetSettings = useCallback(() => {
+    if (
+      confirm("Do you want to reset ALL EVENTS and SETTINGS?") &&
+      confirm(
+        "Do you really, really, want to reset ALL EVENTS and SETTINGS? Note that all the saved events will be lost.",
+      )
+    ) {
+      localStorage.removeItem("settings");
+      localStorage.removeItem("events");
+      alert("All events data and settings are cleared.");
+    }
+  }, [settings]);
+
+  return { settings, updateSettings, saveSettings, resetSettings };
 }
