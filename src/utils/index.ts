@@ -22,7 +22,7 @@ export function cloneObject(object: AnyObject): AnyObject {
   return object;
 }
 
-export function formatTime(time: string) {
+function formatTimeInTwelveHours(time: string) {
   let newTime = "";
   let [hours, minutes] = time.split(":");
 
@@ -46,7 +46,28 @@ export function formatTime(time: string) {
   return newTime;
 }
 
-export function formatDate(date: string) {
-  let [year, month, day] = date.split("-");
-  return `${day}-${month}-${year}`;
+export function formatDateWithFilter(datetime: string, filter: string): string {
+  const date = datetime.split("T")[0];
+  const [year, month, day] = date.split("-");
+
+  switch (filter) {
+    case "mm-dd-yyyy":
+      return `${month.padStart(2, "0")}-${day.padStart(2, "0")}-${year}`;
+    default:
+      return `${day.padStart(2, "0")}-${month.padStart(2, "0")}-${year}`;
+  }
+}
+
+export function formatTimeWithFilter(datetime: string, filter: string): string {
+  // this function is assuming that the time is in by default 24-hour format, and it literally is
+  const time = datetime.split("T")[1];
+  console.log("filter:", filter);
+  console.log("time before filter:", time);
+
+  switch (filter) {
+    case "12":
+      return formatTimeInTwelveHours(time);
+    default:
+      return time;
+  }
 }

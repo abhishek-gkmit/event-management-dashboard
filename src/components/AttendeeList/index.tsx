@@ -9,11 +9,12 @@ function Attendee({ id, name, email, event, deleteAttendee }: AttendeeProps) {
   const navigate = useNavigate();
 
   return (
-    <tr className="table-row">
+    <tr>
       <td>{name}</td>
       <td>{email}</td>
       <td>
         <button
+          className="attendee-edit-btn"
           type="button"
           onClick={() => navigate(`/attendee/edit/${event.id}/${id}`)}
         >
@@ -21,7 +22,11 @@ function Attendee({ id, name, email, event, deleteAttendee }: AttendeeProps) {
         </button>
       </td>
       <td>
-        <button type="button" onClick={() => id && deleteAttendee(id)}>
+        <button
+          className="attendee-edit-btn"
+          type="button"
+          onClick={() => id && deleteAttendee(id)}
+        >
           Delete
         </button>
       </td>

@@ -26,6 +26,7 @@
 
 .event-table-row {
   transition: 0.2s;
+  cursor: pointer;
 }
 
 .event-table-row:hover {

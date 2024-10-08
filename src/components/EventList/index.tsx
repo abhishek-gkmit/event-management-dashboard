@@ -1,12 +1,15 @@
 import { useNavigate } from "react-router-dom";
 import { useMemo, useContext } from "react";
 import { DashboardContext } from "@src/contexts/DashboardContext";
-import { formatDate, formatTime } from "@src/utils";
+import { formatDateWithFilter, formatTimeWithFilter } from "@src/utils";
+import { useSettings } from "@src/hooks/useSettings";
 
 import "@components/EventList/style.css";
 
 function MainEventComponent({ id, title, datetime, attendees }: MainEvent) {
   const { eventId, selectEvent } = useContext(DashboardContext);
+  const { settings } = useSettings();
+  console.log("EventList:", settings);
 
   return (
     // `+` is used to convert string into number
@@ -19,8 +22,12 @@ function MainEventComponent({ id, title, datetime, attendees }: MainEvent) {
       onClick={() => selectEvent && selectEvent(id)}
     >
       <td className="event-title">{title}</td>
-      <td className="event-date">{formatDate(datetime.split("T")[0])}</td>
-      <td className="event-time">{formatTime(datetime.split("T")[1])}</td>
+      <td className="event-date">
+        {formatDateWithFilter(datetime, settings.dateFormat)}
+      </td>
+      <td className="event-time">
+        {formatTimeWithFilter(datetime, settings.timeFormat)}
+      </td>
       <td className="event-attendees">{attendees}</td>
     </tr>
   );

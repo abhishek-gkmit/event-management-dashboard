@@ -2,12 +2,15 @@ import { useMemo, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { DashboardContext } from "@src/contexts/DashboardContext";
 import { AttendeeList } from "@components/AttendeeList";
-import { formatDate, formatTime } from "@src/utils";
+import { formatDateWithFilter, formatTimeWithFilter } from "@src/utils";
 
 import "@components/EventInfo/style.css";
+import { useSettings } from "@src/hooks/useSettings";
 
 export function EventInfo() {
   const { eventId, events, deleteEvent } = useContext(DashboardContext);
+  const { settings } = useSettings();
+  console.log("EventInfo:", settings);
 
   const navigate = useNavigate();
 
@@ -34,11 +37,11 @@ export function EventInfo() {
         <span className="datetime-emoji" title="Event date">
           🗓️
         </span>{" "}
-        {formatDate(event.datetime.split("T")[0])},{" "}
+        {formatDateWithFilter(event.datetime, settings.dateFormat)},{" "}
         <span className="datetime-emoji" title="Event time">
           🕒
         </span>{" "}
-        {formatTime(event.datetime.split("T")[1])}
+        {formatTimeWithFilter(event.datetime, settings.timeFormat)}
       </p>
       <p className="event-location">
         <span className="datetime-emoji" title="Event location">
