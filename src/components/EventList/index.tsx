@@ -1,7 +1,11 @@
 import { useNavigate } from "react-router-dom";
-import { useMemo, useContext } from "react";
+import { useMemo, useContext, useState } from "react";
 import { DashboardContext } from "@src/contexts/DashboardContext";
-import { formatDateWithFilter, formatTimeWithFilter } from "@src/utils";
+import {
+  formatDateWithFilter,
+  formatTimeWithFilter,
+  filterEventsWithFilter,
+} from "@src/utils";
 import { useSettings } from "@src/hooks/useSettings";
 
 import "@components/EventList/style.css";
@@ -9,7 +13,6 @@ import "@components/EventList/style.css";
 function MainEventComponent({ id, title, datetime, attendees }: MainEvent) {
   const { eventId, selectEvent } = useContext(DashboardContext);
   const { settings } = useSettings();
-  console.log("EventList:", settings);
 
   return (
     // `+` is used to convert string into number
@@ -33,25 +36,21 @@ function MainEventComponent({ id, title, datetime, attendees }: MainEvent) {
   );
 }
 
-function filterEvents(events: MainEvent[], date: Date): MainEvent[] {
-  const filteredEvents = events.filter(({ datetime }) => {
-    // + is used here to convert the date objects into number(miliseconds) to compare them
-    return (
-      +new Date(datetime.split("T")[0] + "T00:00") ===
-      +new Date(date.getFullYear(), date.getMonth(), date.getDate())
-    );
-  });
-
-  return filteredEvents;
-}
-
 export function EventList({ date }: EventListProps) {
   const { events } = useContext(DashboardContext);
+  const { settings } = useSettings();
+  const [eventListFilter, setEventListFilter] = useState(
+    settings.eventListFilter,
+  );
 
   const navigate = useNavigate();
 
   const eventTable = useMemo(() => {
-    const filteredEvents = filterEvents(events, date);
+    const filteredEvents = filterEventsWithFilter(
+      events,
+      date,
+      eventListFilter,
+    );
     if (filteredEvents.length < 1) {
       return (
         <p>{`There are no events on ${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()}`}</p>
@@ -88,10 +87,33 @@ export function EventList({ date }: EventListProps) {
         </table>
       </div>
     );
-  }, [events, date]);
+  }, [events, date, eventListFilter]);
 
   return (
     <div className="event-list">
+      <div className="event-list-filter-container">
+        <p>Show events for:</p>
+        <select
+          className="event-list-filter"
+          name="eventListFilter"
+          value={eventListFilter}
+          onChange={(e) => setEventListFilter(e.target.value)}
+        >
+          {["current-day", "this-week", "this-month"].map(
+            function filterToOption(filter) {
+              return (
+                <option value={filter}>
+                  {filter
+                    .split("-")
+                    .map((word) => word.at(0)?.toUpperCase() + word.slice(1))
+                    .toString()
+                    .replace(",", " ")}
+                </option>
+              );
+            },
+          )}
+        </select>
+      </div>
       {eventTable}
       <button
         type="button"

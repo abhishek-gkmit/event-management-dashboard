@@ -4,6 +4,7 @@
   align-items: center;
   width: 100%;
   text-align: center;
+  gap: 10px;
 }
 
 .event-table {
@@ -20,10 +21,6 @@
   padding: 5px;
 }
 
-.event-add-btn {
-  margin-top: 10px;
-}
-
 .event-table-row {
   transition: 0.2s;
   cursor: pointer;
@@ -36,4 +33,20 @@
 .selected-event-row {
   color: white;
   background-color: rgb(0, 180, 216);
+}
+
+.event-list-filter-container {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.event-list-filter-container>p {
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+}
+
+.event-list-filter {
+  padding: 5px;
 }

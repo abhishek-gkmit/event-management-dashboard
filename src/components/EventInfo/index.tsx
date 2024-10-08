@@ -10,7 +10,6 @@ import { useSettings } from "@src/hooks/useSettings";
 export function EventInfo() {
   const { eventId, events, deleteEvent } = useContext(DashboardContext);
   const { settings } = useSettings();
-  console.log("EventInfo:", settings);
 
   const navigate = useNavigate();
 

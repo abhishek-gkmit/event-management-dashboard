@@ -1,3 +1,7 @@
+const MILISECONDS_IN_A_DAY = 24 * 60 * 60 * 1000;
+
+const DAYS_IN_MONTHS = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+
 export function cloneObject(object: AnyObject): AnyObject {
   if (object === null) {
     return object;
@@ -61,13 +65,61 @@ export function formatDateWithFilter(datetime: string, filter: string): string {
 export function formatTimeWithFilter(datetime: string, filter: string): string {
   // this function is assuming that the time is in by default 24-hour format, and it literally is
   const time = datetime.split("T")[1];
-  console.log("filter:", filter);
-  console.log("time before filter:", time);
 
   switch (filter) {
     case "12":
       return formatTimeInTwelveHours(time);
     default:
       return time;
+  }
+}
+
+function getWeekEndDate(date: Date): Date {
+  // getDay() will return the day of week starting from 0 and sunday is first day of the week
+  const remainingDaysInWeek = 7 - (date.getDay() + 1);
+  return new Date(
+    // +date converts date into miliseconds
+    +date + MILISECONDS_IN_A_DAY * remainingDaysInWeek,
+  );
+}
+
+function getMonthEndDate(date: Date): Date {
+  // getDay() will return the day of week starting from 0 and sunday is first day of the week
+  const remainingDaysInMonth = DAYS_IN_MONTHS[date.getMonth()] - date.getDate();
+  // +date converts date into miliseconds
+  return new Date(+date + MILISECONDS_IN_A_DAY * remainingDaysInMonth);
+}
+
+export function filterEventsWithFilter(
+  events: MainEvent[],
+  date: Date,
+  filter: string,
+): MainEvent[] {
+  // removing time for better comparison
+  date = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+
+  switch (filter) {
+    case "this-week":
+      return events.filter(({ datetime }) => {
+        // + is used here to convert the date objects into number(miliseconds) to compare them
+        const eventDate = new Date(datetime.split("T")[0] + "T00:00");
+        return +date <= +eventDate && +eventDate <= +getWeekEndDate(date);
+      });
+
+    case "this-month":
+      return events.filter(({ datetime }) => {
+        // + is used here to convert the date objects into number(miliseconds) to compare them
+        const eventDate = new Date(datetime.split("T")[0] + "T00:00");
+        return +date <= +eventDate && +eventDate <= +getMonthEndDate(date);
+      });
+
+    default:
+      return events.filter(({ datetime }) => {
+        // + is used here to convert the date objects into number(miliseconds) to compare them
+        return (
+          +new Date(datetime.split("T")[0] + "T00:00") ===
+          +new Date(date.getFullYear(), date.getMonth(), date.getDate())
+        );
+      });
   }
 }
