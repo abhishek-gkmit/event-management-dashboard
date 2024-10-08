@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import Calendar from "react-calendar";
+import { useNavigate } from "react-router-dom";
 import { EventList } from "@components/EventList";
 import {
   DashboardContext,
@@ -9,7 +10,6 @@ import { EventInfo } from "@components/EventInfo";
 
 import "@components/Dashboard/style.css";
 import "react-calendar/dist/Calendar.css";
-import { useNavigate } from "react-router-dom";
 
 function DashboardWrapper() {
   const { date, setDate } = useContext(DashboardContext);

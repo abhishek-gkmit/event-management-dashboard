@@ -1,13 +1,13 @@
 import { useNavigate } from "react-router-dom";
 import { useMemo, useContext } from "react";
 import { DashboardContext } from "@src/contexts/DashboardContext";
+import { useSettings } from "@src/hooks/useSettings";
 import {
   formatDateWithFilter,
   formatTimeWithFilter,
   filterEventsWithFilter,
   sortEvents,
 } from "@src/utils";
-import { useSettings } from "@src/hooks/useSettings";
 
 import "@components/EventList/style.css";
 

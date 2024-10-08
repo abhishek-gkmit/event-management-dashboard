@@ -2,10 +2,10 @@ import { useMemo, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { DashboardContext } from "@src/contexts/DashboardContext";
 import { AttendeeList } from "@components/AttendeeList";
+import { useSettings } from "@src/hooks/useSettings";
 import { formatDateWithFilter, formatTimeWithFilter } from "@src/utils";
 
 import "@components/EventInfo/style.css";
-import { useSettings } from "@src/hooks/useSettings";
 
 export function EventInfo() {
   const { eventId, events, deleteEvent } = useContext(DashboardContext);

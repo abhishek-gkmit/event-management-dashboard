@@ -1,6 +1,6 @@
 import { FormEvent, useEffect, useMemo, useRef, useState } from "react";
-import { useEvents } from "@hooks/useEvents";
 import { useNavigate } from "react-router-dom";
+import { useEvents } from "@hooks/useEvents";
 
 import "@components/AttendeeFormHelper/style.css";
 

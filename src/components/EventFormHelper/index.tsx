@@ -1,9 +1,8 @@
-import { FormEvent, useState, useRef } from "react";
+import { FormEvent, useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useEvents } from "@hooks/useEvents";
 
 import "@components/EventFormHelper/style.css";
-import { useEffect } from "react";
 
 export function EventFormHelper({
   initFormData,

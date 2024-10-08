@@ -1,9 +1,8 @@
+import { useMemo, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
-import { useMemo } from "react";
 import { useEvents } from "@hooks/useEvents";
 
 import "@components/AttendeeList/style.css";
-import { useCallback } from "react";
 
 function Attendee({ id, name, email, event, deleteAttendee }: AttendeeProps) {
   const navigate = useNavigate();
