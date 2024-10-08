@@ -1,14 +1,35 @@
-.attendee-table {
-  border-collapse: collapse;
+.attendee-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-top: 1px solid rgba(0, 0, 0, 0.2);
 }
 
-.attendee-table thead tr th {
-  /* background-color: gray; */
-  border: 1px solid rgba(0, 0, 0, 0.6);
+.attendee-table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.attendee-table tr th {
+  border: 1px solid rgba(0, 0, 0, 0.2);
 }
 
 .attendee-table td {
   text-align: center;
   padding: 5px;
-  border: 1px solid rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.add-attendee-btn {
+  margin-top: 10px;
+}
+
+.no-attendees-msg {
+  margin-top: 5px;
+  padding-top: 5px;
+}
+
+.total-attendees-msg {
+  text-align: left;
+  margin: 10px 0;
 }

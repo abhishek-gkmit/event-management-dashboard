@@ -1,0 +1,29 @@
+.dashboard {
+  display: flex;
+  gap: 50px;
+  width: 100%;
+  padding: 10px;
+}
+
+.left-side,
+.right-side {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  width: 50%;
+  height: 630px;
+  max-height: 630px;
+}
+
+.left-side {
+  gap: 20px;
+  box-shadow: 2px 0px 5px 5px rgba(0, 0, 0, 0.2);
+  border-radius: 20px;
+  padding: 20px;
+}
+
+.calendar {
+  border-radius: 10px;
+  padding: 10px;
+}

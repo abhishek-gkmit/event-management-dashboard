@@ -1,0 +1,38 @@
+.event-info {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.2);
+  height: 100%;
+}
+
+.event-title {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.event-datetime {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  gap: 5px;
+}
+
+.datetime-emoji {
+  font-size: 24px;
+}
+
+.event-info>p {
+  margin-top: 10px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.btn-container {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+  justify-content: center;
+  margin: 10px 0;
+}

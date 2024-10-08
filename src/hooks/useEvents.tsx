@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { cloneObject } from "../utils";
+import { cloneObject } from "@src/utils";
 
 export function useEvents() {
   const [events, setEvents] = useState<Array<MainEvent>>([]);
@@ -36,7 +36,11 @@ export function useEvents() {
     localStorage.setItem("events", JSON.stringify(newEvents));
   }
 
-  function deleteEvent(eventData: MainEvent) {
+  function deleteEvent(eventData: MainEvent | undefined) {
+    if (!eventData) {
+      return;
+    }
+
     const newEvents = (cloneObject(events) as Array<MainEvent>).filter(
       ({ id }) => id !== eventData.id,
     );
