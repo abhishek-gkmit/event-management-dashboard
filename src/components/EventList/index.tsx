@@ -125,8 +125,7 @@ export function EventList({ date }: EventListProps) {
             <thead>
               <tr>
                 <th>Title</th>
-                <th>Date</th>
-                <th>Time</th>
+                <th colSpan={2}>Date & Time</th>
                 <th>Attendees</th>
               </tr>
             </thead>

@@ -12,8 +12,8 @@
   align-items: center;
   gap: 10px;
   width: 50%;
-  height: 630px;
-  max-height: 630px;
+  height: 700px;
+  max-height: 700px;
 }
 
 .left-side {
@@ -21,6 +21,11 @@
   box-shadow: 2px 0px 5px 5px rgba(0, 0, 0, 0.2);
   border-radius: 20px;
   padding: 20px;
+  margin-left: 20px;
+}
+
+.right-side {
+  margin-right: 20px;
 }
 
 .calendar {

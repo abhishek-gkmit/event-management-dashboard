@@ -21,7 +21,7 @@ export function EventFormHelper({
   return (
     <>
       <form action="#" onSubmit={handleSubmit} className="event-form">
-        <h1>{isEdit ? "Edit Event" : "Add Event"}</h1>
+        <h1>{isEdit ? "Update Event" : "Add Event"}</h1>
         <input
           type="text"
           name="title"
@@ -82,7 +82,7 @@ export function EventFormHelper({
             Cancel
           </button>
           <button className="button-15" type="submit">
-            {isEdit ? "Update Event" : "Add Event"}
+            {isEdit ? "Update" : "Add Event"}
           </button>
         </div>
       </form>

@@ -1,4 +1,5 @@
 import { EventFormHelper } from "@components/EventFormHelper";
+import { formatDate } from "@src/utils";
 
 const initFormData: EventFormData = {
   title: "",
@@ -9,5 +10,10 @@ const initFormData: EventFormData = {
 };
 
 export function AddEvent() {
-  return <EventFormHelper initFormData={initFormData} isEdit={false} />;
+  return (
+    <EventFormHelper
+      initFormData={{ ...initFormData, datetime: formatDate(new Date()) }}
+      isEdit={false}
+    />
+  );
 }
