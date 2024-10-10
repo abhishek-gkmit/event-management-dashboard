@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import Calendar from "react-calendar";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { EventList } from "@components/EventList";
 import {
   DashboardContext,
@@ -18,14 +18,21 @@ function DashboardWrapper() {
 
   return (
     <DashboardContextProvider>
-      <div className="settings-btn-container">
-        <button
-          type="button"
-          className="settings-btn button-15"
-          onClick={() => navigate("/settings")}
-        >
-          Settings
-        </button>
+      <div className="heading-container">
+        <h1 className="dashboard-heading">
+          <Link className="link" to="/">
+            Event Management Dashboard
+          </Link>
+        </h1>
+        <div className="settings-btn-container">
+          <button
+            type="button"
+            className="settings-btn button-15"
+            onClick={() => navigate("/settings")}
+          >
+            Settings
+          </button>
+        </div>
       </div>
       <div className="dashboard">
         <div className="left-side">

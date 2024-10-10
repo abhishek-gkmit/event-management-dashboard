@@ -33,9 +33,17 @@
   padding: 10px;
 }
 
+.heading-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 10px;
+  background-color: rgba(0, 0, 0, 0.2);
+  margin-bottom: 10px;
+}
+
 .settings-btn-container {
   display: flex;
-  justify-content: center;
+  justify-content: end;
 }
 
 .settings-btn {
@@ -48,4 +56,16 @@
 
 .settings-btn:hover {
   box-shadow: 0 0 50px 2px #0674cc;
+}
+
+.dashboard-heading {
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  text-decoration-line: underline;
+  width: 100%;
+}
+
+.dashboard-heading .link {
+  color: black;
 }
