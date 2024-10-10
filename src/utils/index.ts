@@ -141,14 +141,7 @@ export function sortEvents(events: MainEvent[], sortBy: string): MainEvent[] {
       break;
 
     case "name":
-      events.sort(function sortEvents({ title: titleA }, { title: titleB }) {
-        if (titleA === titleB) {
-          return 0;
-        } else if (titleA > titleB) {
-          return 1;
-        }
-        return -1;
-      });
+      events.sort();
       break;
 
     default:
